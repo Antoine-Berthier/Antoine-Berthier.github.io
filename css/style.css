@@ -42,26 +42,26 @@ body {
 }
 
 .logo-icon {
-    width: 50px;
-    height: 50px;
-    background: #2c3e50;
-    border-radius: 8px;
+    height: 60px;
+    width: auto;
+    /*background: #2c3e50;*/
+    /*border-radius: 8px;*/
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 15px;
     position: relative;
 }
-
+/*
 .logo-icon::before {
     content: '🏢';
     font-size: 24px;
 }
-
+*/
 .logo-text h1 {
     font-size: 32px;
     font-weight: bold;
-    color: #2c3e50;
+    color: #000000;
     margin: 0;
 }
 
@@ -78,8 +78,8 @@ body {
 
 .nav-btn {
     padding: 12px 20px;
-    background: rgba(255,255,255,0.9);
-    border: 2px solid #34495e;
+    /*background: rgba(255,255,255,0.9);*/
+    /*border: 2px solid #34495e;*/
     color: #34495e;
     text-decoration: none;
     border-radius: 8px;
@@ -140,19 +140,29 @@ body {
 /* Map Section */
 .map-section {
     position: relative;
-    background: white;
+    /*background: white;*/
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    height: 400px;
+    /*box-shadow: 0 10px 30px rgba(0,0,0,0.1);*/
+    /*height: 400px;*/
+    display:inline-block;
 }
 
 .map-container {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #74b9ff, #0984e3, #a29bfe);
+    /*background: linear-gradient(135deg, #74b9ff, #0984e3, #a29bfe);*/
     position: relative;
     overflow: hidden;
+    display:inline-block;
+}
+
+.map-image{
+    border-radius:15px;
+    display: block; /* Supprime tout espace supplémentaire sous l'image */
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur de son conteneur */
+    height: auto; /* Maintient le ratio d'aspect de l'image */
+    background: linear-gradient(135deg, #74b9ff, #0984e3, #a29bfe);
 }
 
 /* Simplified map design */
@@ -197,7 +207,6 @@ body {
 
 .la-rochelle { top: 45%; left: 35%; }
 .la-pallice { top: 30%; left: 20%; }
-
 .property-marker {
     position: absolute;
     width: 20px;
