@@ -1,0 +1,376 @@
+:root {
+  --primary-color: #3498db;
+  --font-main: 'Arial', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #f4d03f, #f1c40f);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background: #2c3e50;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    position: relative;
+}
+
+.logo-icon::before {
+    content: '🏢';
+    font-size: 24px;
+}
+
+.logo-text h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.logo-text p {
+    font-size: 14px;
+    color: #34495e;
+    margin: 0;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.9);
+    border: 2px solid #34495e;
+    color: #34495e;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: #34495e;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Category Navigation */
+.category-nav {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    gap: 15px;
+    padding: 0 20px;
+    justify-content: center;
+}
+
+.category-btn {
+    padding: 15px 25px;
+    border: 3px solid #2c3e50;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: #2c3e50;
+}
+
+.category-btn.maisons { background: #f9e79f; }
+.category-btn.appartements { background: #f8c471; }
+.category-btn.terrains { background: #f1948a; }
+.category-btn.locaux { background: #cd6155; color: white; }
+.category-btn.insolite { background: #82e0aa; }
+
+.category-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1200px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* Map Section */
+.map-section {
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: 400px;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #74b9ff, #0984e3, #a29bfe);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Simplified map design */
+.map-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #a29bfe 100%);
+}
+
+.coastline {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background: #00cec9;
+    clip-path: polygon(0 0, 70% 0, 80% 20%, 75% 40%, 85% 60%, 70% 80%, 60% 100%, 0 100%);
+}
+
+.land-area {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #a8e6cf;
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 40% 100%, 25% 80%, 35% 60%, 25% 40%, 30% 20%);
+}
+
+.city-label {
+    position: absolute;
+    background: rgba(255,255,255,0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.la-rochelle { top: 45%; left: 35%; }
+.la-pallice { top: 30%; left: 20%; }
+
+.property-marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.property-marker:hover {
+    transform: scale(1.3);
+    z-index: 10;
+}
+
+.marker-1 { background: #f39c12; top: 40%; left: 30%; }
+.marker-2 { background: #e74c3c; top: 35%; left: 45%; }
+.marker-3 { background: #3498db; top: 50%; left: 40%; }
+.marker-4 { background: #27ae60; top: 45%; left: 55%; }
+.marker-5 { background: #9b59b6; top: 60%; left: 35%; }
+
+/* Property Preview */
+.property-preview {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.5s;
+}
+
+.property-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #a8e6cf, #88d8c0);
+    position: relative;
+    overflow: hidden;
+}
+
+.property-image::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.property-image::after {
+    content: '🏠';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+}
+
+.pool {
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+    width: 25%;
+    height: 15%;
+    background: #3498db;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.property-details {
+    padding: 25px;
+}
+
+.property-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.property-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+.property-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.property-info div {
+    font-size: 16px;
+    color: #34495e;
+}
+
+.voir-plus-btn {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.voir-plus-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Page vide */
+.page-vide {
+    display: none;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.page-vide h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.retour-btn {
+    background: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.retour-btn:hover {
+    background: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .category-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .category-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
