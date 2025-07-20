@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annonces - INSOL IMMO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Pour les icônes (filtre, flèches) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- ======================= HEADER (réutilisé) ======================= -->
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/logo.png" alt="Logo INSOL IMMO" class="logo">
+                <div class="logo-text">
+                    <h1>INSOL IMMO</h1>
+                    <p>Immobilier insolite - La Rochelle</p>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="annonces_explorer.html">Annonces</a></li>
+                    <li><a href="estimations.html">Estimations</a></li>
+                    <li><a href="conseils_index.html">Conseils</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======================= FILTRES DE RECHERCHE ======================= -->
+        <section class="search-filters-section">
+            <div class="container">
+                <h2 class="section-title">ANNONCES</h2>
+                <div class="filter-buttons-container">
+                    <!-- Groupe de filtre pour le "Type" -->
+                    <div class="filter-group">
+                        <button class="btn-filter-option" id="type-filter-btn">
+                            Type
+                            <span class="filter-indicator"></span>
+                        </button>
+                        <div class="filter-dropdown" id="type-dropdown-menu">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="type-maison" name="property-type" value="maison">
+                                    <label for="type-maison">Maison</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="type-appartement" name="property-type" value="appartement">
+                                    <label for="type-appartement">Appartement</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="type-locaux" name="property-type" value="locaux">
+                                    <label for="type-locaux">Locaux</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="type-terrain" name="property-type" value="terrain">
+                                    <label for="type-terrain">Terrain</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="type-atypique" name="property-type" value="atypique">
+                                    <label for="type-atypique">Atypique</label>
+                                </li>
+                            </ul>
+                            <button class="btn-dropdown-validate">Valider</button>
+                        </div>
+                    </div>
+                    <!-- Groupe de filtre pour la "Localisation" -->
+                    <div class="filter-group">
+                        <button class="btn-filter-option" id="location-filter-btn">
+                            Localisation
+                            <span class="filter-indicator"></span>
+                        </button>
+                        <div class="filter-dropdown" id="location-dropdown-menu">
+                            <div class="location-sections">
+                                <div class="location-section">
+                                    <h5>Quartiers de La Rochelle</h5>
+                                    <ul>
+                                        <li><input type="checkbox" id="loc-centre" value="Centre-ville"><label for="loc-centre">Centre-ville / Vieux Port</label></li>
+                                        <li><input type="checkbox" id="loc-genette" value="La Genette"><label for="loc-genette">La Genette</label></li>
+                                        <li><input type="checkbox" id="loc-minimes" value="Les Minimes"><label for="loc-minimes">Les Minimes</label></li>
+                                        <li><input type="checkbox" id="loc-st-nicolas" value="Saint-Nicolas"><label for="loc-st-nicolas">Saint-Nicolas</label></li>
+                                        <li><input type="checkbox" id="loc-gabut" value="Le Gabut"><label for="loc-gabut">Le Gabut</label></li>
+                                        <li><input type="checkbox" id="loc-tasdon" value="Tasdon"><label for="loc-tasdon">Tasdon</label></li>
+                                        <li><input type="checkbox" id="loc-pallice" value="La Pallice"><label for="loc-pallice">La Pallice</label></li>
+                                        <li><input type="checkbox" id="loc-laleu" value="Laleu"><label for="loc-laleu">Laleu</label></li>
+                                        <li><input type="checkbox" id="loc-fetilly" value="Fétilly"><label for="loc-fetilly">Fétilly</label></li>
+                                    </ul>
+                                </div>
+                                <div class="location-section">
+                                    <h5>Villes de l'agglomération</h5>
+                                    <ul>
+                                        <li><input type="checkbox" id="loc-aytre" value="Aytré"><label for="loc-aytre">Aytré</label></li>
+                                        <li><input type="checkbox" id="loc-perigny" value="Périgny"><label for="loc-perigny">Périgny</label></li>
+                                        <li><input type="checkbox" id="loc-lagord" value="Lagord"><label for="loc-lagord">Lagord</label></li>
+                                        <li><input type="checkbox" id="loc-puilboreau" value="Puilboreau"><label for="loc-puilboreau">Puilboreau</label></li>
+                                        <li><input type="checkbox" id="loc-nieul" value="Nieul-sur-Mer"><label for="loc-nieul">Nieul-sur-Mer</label></li>
+                                        <li><input type="checkbox" id="loc-marsilly" value="Marsilly"><label for="loc-marsilly">Marsilly</label></li>
+                                        <li><input type="checkbox" id="loc-esnandes" value="Esnandes"><label for="loc-esnandes">Esnandes</label></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button class="btn-dropdown-validate">Valider</button>
+                        </div>
+                    </div>
+
+                    <!-- Groupe de filtre pour le "Prix" -->
+                    <div class="filter-group">
+                        <button class="btn-filter-option" id="price-filter-btn">
+                            Prix
+                            <span class="filter-indicator"></span>
+                        </button>
+                        <div class="filter-dropdown" id="price-dropdown-menu">
+                            <div class="price-range-inputs">
+                                <div class="price-input-container">
+                                    <label for="price-min">Prix min</label>
+                                    <input type="number" id="price-min" name="price-min" placeholder="Ex: 100 000 €">
+                                </div>
+                                <div class="price-input-container">
+                                    <label for="price-max">Prix max</label>
+                                    <input type="number" id="price-max" name="price-max" placeholder="Ex: 500 000 €">
+                                </div>
+                            </div>
+                            <button class="btn-dropdown-validate">Valider</button>
+                        </div>
+                    </div>
+
+                    <!-- Groupe de filtre pour les "Pièces" -->
+                    <div class="filter-group">
+                        <button class="btn-filter-option" id="rooms-filter-btn">
+                            Pièces
+                            <span class="filter-indicator"></span>
+                        </button>
+                        <div class="filter-dropdown" id="rooms-dropdown-menu">
+                            <div class="rooms-inputs">
+                                <div class="room-input-container">
+                                    <label for="rooms-chambres">Chambres</label>
+                                    <input type="number" id="rooms-chambres" name="rooms-chambres" min="0" placeholder="Ex: 3">
+                                </div>
+                                <div class="room-input-container">
+                                    <label for="rooms-bains">Salles de bain</label>
+                                    <input type="number" id="rooms-bains" name="rooms-bains" min="0" placeholder="Ex: 2">
+                                </div>
+                                <div class="room-input-container">
+                                    <label for="rooms-autres">Autres pièces</label>
+                                    <input type="number" id="rooms-autres" name="rooms-autres" min="0" placeholder="Ex: 1">
+                                </div>
+                            </div>
+                            <button class="btn-dropdown-validate">Valider</button>
+                        </div>
+                    </div>
+                    <button class="btn-apply-filters">
+                        <i class="fa-solid fa-filter"></i>
+                        Filtrer
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= RÉSULTATS DE RECHERCHE ======================= -->
+        <section class="search-results-section">
+            <div class="container results-grid">
+                <!-- Les cartes de biens sont générées ici -->
+                <!-- Carte 1 -->
+                <!-- ======================= RÉSULTATS DE RECHERCHE ======================= -->
+                <section class="search-results-section">
+                    <div class="container results-grid">
+                        <!-- Le contenu sera généré dynamiquement par JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Ajoutez d'autres cartes ici pour remplir la page -->
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================= FOOTER (réutilisé) ======================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-col footer-contact">
+                <a href="index.html" class="logo-container">
+                    <img src="assets/logo.png" alt="Logo INSOL IMMO" class="logo-footer">
+                    <h3>INSOL IMMO</h3>
+                </a>
+                <p>Immobilier insolite - La Rochelle</p>
+                <address>
+                    10 Avenue Coligny<br>
+                    17000 La Rochelle<br>
+                    France
+                </address>
+                <p>+33 6 15 20 69 80</p>
+                <p><a href="mailto:mp.guillemet2@gmail.com">mp.guillemet2@gmail.com</a></p>
+            </div>
+            <div class="footer-col footer-sitemap">
+                <h4>Plan du site</h4>
+                <ul>
+                    <li><a href="plan_site.html">Plan du site</a></li>
+                    <li><a href="annonces_explorer.html">Annonces</a></li>
+                    <li><a href="estimations.html">Estimations</a></li>
+                    <li><a href="conseils_index.html">Conseils</a></li>
+                    <li><a href="mentions_legales.html">Mentions légales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-social">
+                <h4>Suivez-nous</h4>
+                <ul>
+                    <li><a href="newsletter.html">Newsletter</a></li>
+                    <li><a href="#" target="_blank">Instagram</a></li>
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">Facebook</a></li>
+                </ul>
+                <h4 class="footer-title-secondary">Autres</h4>
+                 <ul>
+                    <li><a href="#">Honoraires d'agence</a></li>
+                    <li><a href="#">Changer ses préférences cookies</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
