@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - INSOL IMMO</title>
+    <title>Conseils - INSOL IMMO</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -31,44 +31,29 @@
     </header>
 
     <main>
-        <!-- ======================= FORMULAIRE DE CONTACT ======================= -->
-        <section class="contact-form-section">
+        <section class="articles-list-section">
             <div class="container">
-                <h2 class="section-title">CONTACTEZ-NOUS</h2>
-                <form action="https://formsubmit.co/antoineberthier44@gmail.com" method="POST" class="contact-form">
-                    <input type="hidden" name="_next" value="https://antoine-berthier.github.io/merci.html">
-                    <input type="hidden" name="_captcha" value="false">
-                    <div class="form-group">
-                        <label for="name">Nom</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label>Préférence de contact</label>
-                        <div class="contact-preference">
-                            <input type="radio" id="pref-email" name="contact-preference" value="email" checked>
-                            <label for="pref-email">Email</label>
-                            <input type="radio" id="pref-phone" name="contact-preference" value="phone">
-                            <label for="pref-phone">Téléphone</label>
+                <h2 class="section-title">NOS CONSEILS ET ARTICLES</h2>
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <img src="img/Maison_ex.png" alt="Où habiter à La Rochelle?">
+                        <div class="card-content">
+                            <h3>Où habiter à La Rochelle?</h3>
+                            <p class="article-meta">Publié le 22 juillet 2025</p>
+                            <p class="article-excerpt">Découvrez les meilleurs quartiers de La Rochelle pour trouver le bien immobilier qui vous correspond...</p>
+                            <a href="conseils/ou_habiter_la_rochelle.html" class="btn-read-more">Lire la suite</a>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Sujet</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Envoyer</button>
-                </form>
+                    </article>
+                    <article class="article-card">
+                        <img src="img/Maison_ex.png" alt="Pourquoi investir à La Rochelle en 2025 ?">
+                        <div class="card-content">
+                            <h3>Pourquoi investir à La Rochelle en 2025 ?</h3>
+                            <p class="article-meta">Publié le 22 juillet 2025</p>
+                            <p class="article-excerpt">La Rochelle est une ville dynamique avec un marché immobilier attractif. Découvrez les raisons d'investir...</p>
+                            <a href="conseils/pourquoi_investir_la_rochelle_2025.html" class="btn-read-more">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
     </main>

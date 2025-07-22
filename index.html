@@ -34,10 +34,10 @@
         <!-- ======================= FILTRES DE RECHERCHE (Accueil) ======================= -->
         <section class="filters-section">
             <div class="container">
-                <button class="btn-filter">Maison</button>
-                <button class="btn-filter">Appartement</button>
-                <button class="btn-filter">Terrain</button>
-                <button class="btn-filter btn-insolite">Insolite</button>
+                <button class="btn-filter" onclick="window.location.href='annonces_explorer.html?type=maison'">Maison</button>
+                <button class="btn-filter" onclick="window.location.href='annonces_explorer.html?type=appartement'">Appartement</button>
+                <button class="btn-filter" onclick="window.location.href='annonces_explorer.html?type=terrain'">Terrain</button>
+                <button class="btn-filter btn-insolite" onclick="window.location.href='annonces_explorer.html?type=atypique'">Insolite</button>
             </div>
         </section>
 
@@ -111,6 +111,27 @@
             </a>
         </section>
 
+        <!-- ======================= AVIS CLIENTS ======================= -->
+        <section class="reviews-section">
+            <div class="container">
+                <h2 class="section-title">Ce que nos clients disent de nous</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <p class="review-text">"INSOL IMMO a trouvé la maison de mes rêves en un temps record. Leur professionnalisme et leur connaissance du marché sont exceptionnels. Je recommande vivement !"</p>
+                        <p class="review-author">- Sophie D.</p>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">"J'ai été impressionné par la qualité du service. L'équipe est très à l'écoute et m'a accompagné à chaque étape de la vente de mon appartement. Un grand merci !"</p>
+                        <p class="review-author">- Marc L.</p>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">"Des biens uniques et un accompagnement sur mesure. INSOL IMMO a su comprendre mes attentes et me proposer des options qui sortent de l'ordinaire. Parfait !"</p>
+                        <p class="review-author">- Claire P.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ======================= SECTION AGENCE ======================= -->
         <section class="about-section">
             <div class="container">
@@ -139,6 +160,19 @@
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Préférence de contact</label>
+                        <div class="contact-preference">
+                            <input type="radio" id="pref-email" name="contact-preference" value="email" checked>
+                            <label for="pref-email">Email</label>
+                            <input type="radio" id="pref-phone" name="contact-preference" value="phone">
+                            <label for="pref-phone">Téléphone</label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="subject">Sujet</label>

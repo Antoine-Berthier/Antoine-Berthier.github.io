@@ -89,6 +89,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultsGrid = document.querySelector('.results-grid');
     if (resultsGrid) {
 
+        // --- 0. GESTION DES PARAMÈTRES D'URL POUR LE FILTRAGE INITIAL ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialFilterType = urlParams.get('type');
+
         // --- 1. DONNÉES CENTRALISÉES DES PROPRIÉTÉS ---
         // Dans une vraie application, ces données viendraient d'une base de données (API).
         const allProperties = [
@@ -244,67 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-
-        // --- 3. LOGIQUE DE FILTRAGE ET DE PAGINATION ---
-
-        let currentPage = 1;
-        const propertiesPerPage = 9;
-        let currentFilteredProperties = [...allProperties];
-
-        /**
-         * Convertit un prix au format string (ex: "645 000 €") en nombre.
-         * @param {string} priceString - Le prix en format chaîne de caractères.
-         * @returns {number} Le prix en format numérique.
-         */
-        function parsePrice(priceString) {
-            if (typeof priceString !== 'string') return 0;
-            return parseInt(priceString.replace(/\s|€/g, ''), 10);
-        }
-
-        /**
-         * Filtre la liste complète des propriétés en fonction des critères actifs.
-         */
-        function applyAllFilters() {
-            const selectedTypes = Array.from(document.querySelectorAll('#type-dropdown-menu input:checked')).map(cb => cb.value);
-            const minPrice = parseInt(document.getElementById('price-min').value, 10) || 0;
-            const maxPrice = parseInt(document.getElementById('price-max').value, 10) || Infinity;
-            const selectedLocations = Array.from(document.querySelectorAll('#location-dropdown-menu input:checked')).map(cb => cb.value);
-            const requiredChambres = parseInt(document.getElementById('rooms-chambres').value, 10) || 0;
-            const requiredBains = parseInt(document.getElementById('rooms-bains').value, 10) || 0;
-            const requiredAutres = parseInt(document.getElementById('rooms-autres').value, 10) || 0;
-            const selectedCriteria = Array.from(document.querySelectorAll('.other-criteria input:checked')).map(cb => cb.value);
-
-            let filtered = [...allProperties];
-
-            if (selectedTypes.length > 0) {
-                filtered = filtered.filter(p => selectedTypes.includes(p.type));
-            }
-
-            filtered = filtered.filter(p => {
-                const propertyPrice = parsePrice(p.price);
-                return propertyPrice >= minPrice && propertyPrice <= maxPrice;
-            });
-
-            if (selectedLocations.length > 0) {
-                filtered = filtered.filter(p => selectedLocations.includes(p.location));
-            }
-
-            filtered = filtered.filter(p => {
-                return p.rooms.chambres >= requiredChambres && p.rooms.bains >= requiredBains && p.rooms.autres >= requiredAutres;
-            });
-
-            if (selectedCriteria.length > 0) {
-                filtered = filtered.filter(p => {
-                    return selectedCriteria.every(criterion => p.features && p.features.includes(criterion));
-                });
-            }
-
-            currentFilteredProperties = filtered;
-            currentPage = 1; // Réinitialise à la première page après un filtre
-            renderPage(currentPage);
-            renderPaginationControls();
-        }
-
         /**
          * Affiche les propriétés pour une page donnée.
          * @param {number} page - Le numéro de la page à afficher.
@@ -372,7 +315,69 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             paginationContainer.appendChild(nextBtn);
         }
-        
+
+        // --- 3. LOGIQUE DE FILTRAGE ET DE PAGINATION ---
+
+        let currentPage = 1;
+        const propertiesPerPage = 9; // Reverted to 12 as per original request
+        let currentFilteredProperties = [...allProperties];
+
+        /**
+         * Convertit un prix au format string (ex: "645 000 €") en nombre.
+         * @param {string} priceString - Le prix en format chaîne de caractères.
+         * @returns {number} Le prix en format numérique.
+         */
+        function parsePrice(priceString) {
+            if (typeof priceString !== 'string') return 0;
+            return parseInt(priceString.replace(/\s|€/g, ''), 10);
+        }
+
+        /**
+         * Filtre la liste complète des propriétés en fonction des critères actifs.
+         */
+        function applyAllFilters() {
+            const selectedTypes = Array.from(document.querySelectorAll('#type-dropdown-menu input:checked')).map(cb => cb.value);
+            const minPrice = parseInt(document.getElementById('price-min').value, 10) || 0;
+            const maxPrice = parseInt(document.getElementById('price-max').value, 10) || Infinity;
+            const selectedLocations = Array.from(document.querySelectorAll('#location-dropdown-menu input:checked')).map(cb => cb.value);
+            const requiredChambres = parseInt(document.getElementById('rooms-chambres').value, 10) || 0;
+            const requiredBains = parseInt(document.getElementById('rooms-bains').value, 10) || 0;
+            const requiredAutres = parseInt(document.getElementById('rooms-autres').value, 10) || 0;
+            const selectedCriteria = Array.from(document.querySelectorAll('.other-criteria input:checked')).map(cb => cb.value);
+
+            let filtered = [...allProperties];
+
+            // Apply initial filter from URL if present and no other type filters are selected
+            if (initialFilterType && selectedTypes.length === 0) {
+                filtered = filtered.filter(p => p.type === initialFilterType);
+            } else if (selectedTypes.length > 0) {
+                filtered = filtered.filter(p => selectedTypes.includes(p.type));
+            }
+
+            filtered = filtered.filter(p => {
+                const propertyPrice = parsePrice(p.price);
+                return propertyPrice >= minPrice && propertyPrice <= maxPrice;
+            });
+
+            if (selectedLocations.length > 0) {
+                filtered = filtered.filter(p => selectedLocations.includes(p.location));
+            }
+
+            filtered = filtered.filter(p => {
+                return p.rooms.chambres >= requiredChambres && p.rooms.bains >= requiredBains && p.rooms.autres >= requiredAutres;
+            });
+
+            if (selectedCriteria.length > 0) {
+                filtered = filtered.filter(p => {
+                    return selectedCriteria.every(criterion => p.features && p.features.includes(criterion));
+                });
+            }
+
+            currentFilteredProperties = filtered;
+            currentPage = 1; // Réinitialise à la première page après un filtre
+            renderPage(currentPage);
+            renderPaginationControls();
+        }
 
         // --- 4. GESTION DES ÉVÉNEMENTS DES FILTRES ---
         const typeFilterBtn = document.getElementById('type-filter-btn');
@@ -388,13 +393,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const indicator = btn.querySelector('.filter-indicator');
             const validateBtn = menu.querySelector('.btn-dropdown-validate');
 
+            console.log(`Setting up filter for button: ${btn.id}`);
+
             btn.addEventListener('click', e => {
                 e.stopPropagation();
+                console.log(`Button ${btn.id} clicked.`);
                 // Ferme tous les autres menus
                 document.querySelectorAll('.filter-dropdown.show').forEach(m => {
-                    if (m !== menu) m.classList.remove('show');
+                    if (m !== menu) {
+                        m.classList.remove('show');
+                        console.log(`Removed show from ${m.id}`);
+                    }
                 });
                 menu.classList.toggle('show');
+                console.log(`${menu.id} toggled. Current state: ${menu.classList.contains('show') ? 'show' : 'hidden'}`);
             });
 
             validateBtn.addEventListener('click', () => {
@@ -407,29 +419,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 indicator.classList.toggle('active', isActive);
                 menu.classList.remove('show');
+                console.log(`Validate button clicked for ${menu.id}. Removed show.`);
                 applyAllFilters();
             });
         }
 
-        if (typeFilterBtn) setupFilter(typeFilterBtn, typeDropdownMenu);
-        if (priceFilterBtn) setupFilter(priceFilterBtn, priceDropdownMenu);
-        if (locationFilterBtn) setupFilter(locationFilterBtn, locationDropdownMenu);
-        if (roomsFilterBtn) setupFilter(roomsFilterBtn, roomsDropdownMenu);
+        if (typeFilterBtn) { setupFilter(typeFilterBtn, typeDropdownMenu); console.log('Type filter button found.'); }
+        if (priceFilterBtn) { setupFilter(priceFilterBtn, priceDropdownMenu); console.log('Price filter button found.'); }
+        if (locationFilterBtn) { setupFilter(locationFilterBtn, locationDropdownMenu); console.log('Location filter button found.'); }
+        if (roomsFilterBtn) { setupFilter(roomsFilterBtn, roomsDropdownMenu); console.log('Rooms filter button found.'); }
 
         // Ferme les menus déroulants si on clique n'importe où sur la page
         window.addEventListener('click', () => {
-            document.querySelectorAll('.filter-dropdown.show').forEach(m => m.classList.remove('show'));
+            document.querySelectorAll('.filter-dropdown.show').forEach(m => {
+                m.classList.remove('show');
+                console.log(`Window click: Removed show from ${m.id}`);
+            });
         });
 
         // Empêche la fermeture quand on clique à l'intérieur d'un menu
         document.querySelectorAll('.filter-dropdown').forEach(menu => {
             menu.addEventListener('click', e => e.stopPropagation());
+            console.log(`StopPropagation added for ${menu.id}`);
         });
         
         // --- 5. INITIALISATION AU CHARGEMENT DE LA PAGE ---
         // Affiche la première page des propriétés et les contrôles de pagination.
-        renderPage(currentPage);
-        renderPaginationControls();
+        if (initialFilterType) {
+            // Check the corresponding checkbox if a type filter is present in the URL
+            const checkbox = document.getElementById(`type-${initialFilterType}`);
+            if (checkbox) {
+                checkbox.checked = true;
+                // Also activate the filter indicator
+                const typeFilterBtn = document.getElementById('type-filter-btn');
+                if (typeFilterBtn) {
+                    const indicator = typeFilterBtn.querySelector('.filter-indicator');
+                    if (indicator) indicator.classList.add('active');
+                }
+            }
+        }
+        applyAllFilters();
     }
 
     
