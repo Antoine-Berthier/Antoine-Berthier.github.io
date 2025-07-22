@@ -14,7 +14,7 @@
     <header class="main-header">
         <div class="container">
             <a href="index.html" class="logo-container">
-                <img src="assets/logo.png" alt="Logo INSOL IMMO" class="logo">
+                <img src="img/logo.PNG" alt="Logo INSOL IMMO" class="logo">
                 <div class="logo-text">
                     <h1>INSOL IMMO</h1>
                     <p>Immobilier insolite - La Rochelle</p>
@@ -25,6 +25,7 @@
                     <li><a href="annonces_explorer.html">Annonces</a></li>
                     <li><a href="estimations.html">Estimations</a></li>
                     <li><a href="conseils_index.html">Conseils</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -149,13 +150,39 @@
                                     <input type="number" id="rooms-autres" name="rooms-autres" min="0" placeholder="Ex: 1">
                                 </div>
                             </div>
+                            <div class="other-criteria">
+                                <h5>Autres critères</h5>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="criteria-garage" name="other-criteria" value="garage">
+                                        <label for="criteria-garage">Garage</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="criteria-parking" name="other-criteria" value="parking">
+                                        <label for="criteria-parking">Place de parking</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="criteria-jardin" name="other-criteria" value="jardin">
+                                        <label for="criteria-jardin">Jardin</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="criteria-piscine" name="other-criteria" value="piscine">
+                                        <label for="criteria-piscine">Piscine</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="criteria-terrasse" name="other-criteria" value="terrasse">
+                                        <label for="criteria-terrasse">Terrasse/Balcon</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="criteria-vue-mer" name="other-criteria" value="vue-mer">
+                                        <label for="criteria-vue-mer">Vue mer</label>
+                                    </li>
+                                </ul>
+                            </div>
                             <button class="btn-dropdown-validate">Valider</button>
                         </div>
                     </div>
-                    <button class="btn-apply-filters">
-                        <i class="fa-solid fa-filter"></i>
-                        Filtrer
-                    </button>
+                    
                 </div>
             </div>
         </section>
@@ -176,6 +203,15 @@
 
             </div>
         </section>
+
+        <!-- ======================= CONTRÔLES DE PAGINATION ======================= -->
+        <section class="pagination-section">
+            <div class="container">
+                <div class="pagination-container">
+                    <!-- Les boutons de pagination seront générés ici -->
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- ======================= FOOTER (réutilisé) ======================= -->
@@ -183,7 +219,7 @@
         <div class="container">
             <div class="footer-col footer-contact">
                 <a href="index.html" class="logo-container">
-                    <img src="assets/logo.png" alt="Logo INSOL IMMO" class="logo-footer">
+                    <img src="img/logo.PNG" alt="Logo INSOL IMMO" class="logo-footer">
                     <h3>INSOL IMMO</h3>
                 </a>
                 <p>Immobilier insolite - La Rochelle</p>

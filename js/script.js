@@ -96,17 +96,20 @@ document.addEventListener('DOMContentLoaded', function() {
             { 
                 id: 1, type: 'maison', title: 'Maison de ville', location: 'Centre-ville', price: '450 000 €', surface: '120m²', surfaceTotale: '150m²', 
                 images: ['img/Maison_ex.png'], link: '#',
-                rooms: { chambres: 3, bains: 2, autres: 1 }
+                rooms: { chambres: 3, bains: 2, autres: 1 },
+                features: ['garage', 'terrasse']
             },
             { 
                 id: 2, type: 'maison', title: 'Maison avec jardin', location: 'Fétilly', price: '380 000 €', surface: '95m²', surfaceTotale: '200m²', 
                 images: ['img/Maison_ex.png'], link: '#',
-                rooms: { chambres: 3, bains: 1, autres: 1 }
+                rooms: { chambres: 3, bains: 1, autres: 1 },
+                features: ['jardin', 'parking']
             },
             { 
                 id: 3, type: 'maison', title: 'Villa vue mer', location: 'La Genette', price: '850 000 €', surface: '200m²', surfaceTotale: '500m²', 
                 images: ['img/Maison_ex.png'], link: '#',
-                rooms: { chambres: 5, bains: 3, autres: 2 }
+                rooms: { chambres: 5, bains: 3, autres: 2 },
+                features: ['piscine', 'jardin', 'garage', 'vue-mer']
             },
 
             // Appartements à La Rochelle
@@ -242,7 +245,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
 
-        // --- 3. LOGIQUE DE FILTRAGE ---
+        // --- 3. LOGIQUE DE FILTRAGE ET DE PAGINATION ---
+
+        let currentPage = 1;
+        const propertiesPerPage = 9;
+        let currentFilteredProperties = [...allProperties];
 
         /**
          * Convertit un prix au format string (ex: "645 000 €") en nombre.
@@ -251,7 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
          */
         function parsePrice(priceString) {
             if (typeof priceString !== 'string') return 0;
-            // Enlève les espaces, le symbole € et convertit en nombre
             return parseInt(priceString.replace(/\s|€/g, ''), 10);
         }
 
@@ -259,47 +265,112 @@ document.addEventListener('DOMContentLoaded', function() {
          * Filtre la liste complète des propriétés en fonction des critères actifs.
          */
         function applyAllFilters() {
-            // Récupère les valeurs du filtre "Type"
             const selectedTypes = Array.from(document.querySelectorAll('#type-dropdown-menu input:checked')).map(cb => cb.value);
-
-            // Récupère les valeurs du filtre "Prix"
             const minPrice = parseInt(document.getElementById('price-min').value, 10) || 0;
             const maxPrice = parseInt(document.getElementById('price-max').value, 10) || Infinity;
-
-            // Récupère les valeurs du filtre "Localisation"
             const selectedLocations = Array.from(document.querySelectorAll('#location-dropdown-menu input:checked')).map(cb => cb.value);
-
-            // Récupère les valeurs du filtre "Pièces"
             const requiredChambres = parseInt(document.getElementById('rooms-chambres').value, 10) || 0;
             const requiredBains = parseInt(document.getElementById('rooms-bains').value, 10) || 0;
             const requiredAutres = parseInt(document.getElementById('rooms-autres').value, 10) || 0;
+            const selectedCriteria = Array.from(document.querySelectorAll('.other-criteria input:checked')).map(cb => cb.value);
 
-            let filteredProperties = [...allProperties];
+            let filtered = [...allProperties];
 
-            // Applique le filtre "Type"
             if (selectedTypes.length > 0) {
-                filteredProperties = filteredProperties.filter(property => selectedTypes.includes(property.type));
+                filtered = filtered.filter(p => selectedTypes.includes(p.type));
             }
 
-            // Applique le filtre "Prix"
-            filteredProperties = filteredProperties.filter(property => {
-                const propertyPrice = parsePrice(property.price);
+            filtered = filtered.filter(p => {
+                const propertyPrice = parsePrice(p.price);
                 return propertyPrice >= minPrice && propertyPrice <= maxPrice;
             });
 
-            // Applique le filtre "Localisation"
             if (selectedLocations.length > 0) {
-                filteredProperties = filteredProperties.filter(property => selectedLocations.includes(property.location));
+                filtered = filtered.filter(p => selectedLocations.includes(p.location));
             }
 
-            // Applique le filtre "Pièces"
-            filteredProperties = filteredProperties.filter(property => {
-                const p = property.rooms;
-                return p.chambres >= requiredChambres && p.bains >= requiredBains && p.autres >= requiredAutres;
+            filtered = filtered.filter(p => {
+                return p.rooms.chambres >= requiredChambres && p.rooms.bains >= requiredBains && p.rooms.autres >= requiredAutres;
             });
 
-            // Affiche les résultats filtrés
-            renderProperties(filteredProperties);
+            if (selectedCriteria.length > 0) {
+                filtered = filtered.filter(p => {
+                    return selectedCriteria.every(criterion => p.features && p.features.includes(criterion));
+                });
+            }
+
+            currentFilteredProperties = filtered;
+            currentPage = 1; // Réinitialise à la première page après un filtre
+            renderPage(currentPage);
+            renderPaginationControls();
+        }
+
+        /**
+         * Affiche les propriétés pour une page donnée.
+         * @param {number} page - Le numéro de la page à afficher.
+         */
+        function renderPage(page) {
+            const start = (page - 1) * propertiesPerPage;
+            const end = start + propertiesPerPage;
+            const propertiesToDisplay = currentFilteredProperties.slice(start, end);
+            renderProperties(propertiesToDisplay);
+        }
+
+        /**
+         * Crée et affiche les contrôles de pagination.
+         */
+        function renderPaginationControls() {
+            const paginationContainer = document.querySelector('.pagination-container');
+            if (!paginationContainer) return;
+
+            const totalPages = Math.ceil(currentFilteredProperties.length / propertiesPerPage);
+            paginationContainer.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Bouton "Précédent"
+            const prevBtn = document.createElement('button');
+            prevBtn.innerHTML = '&laquo;';
+            prevBtn.classList.add('pagination-btn');
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderPage(currentPage);
+                    renderPaginationControls();
+                }
+            });
+            paginationContainer.appendChild(prevBtn);
+
+            // Boutons de page numérotés
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.textContent = i;
+                pageBtn.classList.add('pagination-btn');
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    renderPage(currentPage);
+                    renderPaginationControls();
+                });
+                paginationContainer.appendChild(pageBtn);
+            }
+
+            // Bouton "Suivant"
+            const nextBtn = document.createElement('button');
+            nextBtn.innerHTML = '&raquo;';
+            nextBtn.classList.add('pagination-btn');
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderPage(currentPage);
+                    renderPaginationControls();
+                }
+            });
+            paginationContainer.appendChild(nextBtn);
         }
         
 
@@ -356,8 +427,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // --- 5. INITIALISATION AU CHARGEMENT DE LA PAGE ---
-        // Affiche toutes les propriétés au début.
-        renderProperties(allProperties);
+        // Affiche la première page des propriétés et les contrôles de pagination.
+        renderPage(currentPage);
+        renderPaginationControls();
     }
 
     
