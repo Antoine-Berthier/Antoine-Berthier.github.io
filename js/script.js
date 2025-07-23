@@ -11,34 +11,34 @@ document.addEventListener('DOMContentLoaded', function() {
         // Données des biens pour la carte (simule une base de données)
         const propertiesData = {
             'centre': { 
-                image: 'img/Maison_ex.png', title: 'Maison de ville', price: '450 000 €', surface: '120m²', surfaceTotale: '150m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Maison de ville', price: '450 000 €', surface: '120m²', surfaceTotale: '150m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'fetilly': { 
-                image: 'img/Maison_ex.png', title: 'Maison avec jardin', price: '380 000 €', surface: '95m²', surfaceTotale: '200m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Maison avec jardin', price: '380 000 €', surface: '95m²', surfaceTotale: '200m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'la-genette': { 
-                image: 'img/Maison_ex.png', title: 'Villa vue mer', price: '850 000 €', surface: '200m²', surfaceTotale: '500m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Villa vue mer', price: '850 000 €', surface: '200m²', surfaceTotale: '500m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'les-minimes': { 
-                image: 'img/Maison_ex.png', title: 'Studio moderne', price: '180 000 €', surface: '25m²', surfaceTotale: '30m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Studio moderne', price: '180 000 €', surface: '25m²', surfaceTotale: '30m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'le-gabut': { 
-                image: 'img/Maison_ex.png', title: 'Loft industriel', price: '550 000 €', surface: '150m²', surfaceTotale: '160m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Loft industriel', price: '550 000 €', surface: '150m²', surfaceTotale: '160m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'aytre': { 
-                image: 'img/Maison_ex.png', title: 'Maison familiale', price: '350 000 €', surface: '110m²', surfaceTotale: '400m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Maison familiale', price: '350 000 €', surface: '110m²', surfaceTotale: '400m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'perigny': { 
-                image: 'img/Maison_ex.png', title: 'Maison récente', price: '420 000 €', surface: '130m²', surfaceTotale: '550m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Maison récente', price: '420 000 €', surface: '130m²', surfaceTotale: '550m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'lagord': { 
-                image: 'img/Maison_ex.png', title: 'Duplex avec terrasse', price: '290 000 €', surface: '70m²', surfaceTotale: '90m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Duplex avec terrasse', price: '290 000 €', surface: '70m²', surfaceTotale: '90m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'nieul': { 
-                image: 'img/Maison_ex.png', title: 'Villa avec piscine', price: '720 000 €', surface: '210m²', surfaceTotale: '800m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Villa avec piscine', price: '720 000 €', surface: '210m²', surfaceTotale: '800m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             },
             'marsilly': { 
-                image: 'img/Maison_ex.png', title: 'Terrain à bâtir', price: '160 000 €', surface: 'N/A', surfaceTotale: '600m²', link: '#'
+                image: 'img/Maison_ex.png', title: 'Terrain à bâtir', price: '160 000 €', surface: 'N/A', surfaceTotale: '600m²', link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html'
             }
         };
 
@@ -99,19 +99,19 @@ document.addEventListener('DOMContentLoaded', function() {
             // Maisons à La Rochelle
             { 
                 id: 1, type: 'maison', title: 'Maison de ville', location: 'Centre-ville', price: '450 000 €', surface: '120m²', surfaceTotale: '150m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 3, bains: 2, autres: 1 },
                 features: ['garage', 'terrasse']
             },
             { 
                 id: 2, type: 'maison', title: 'Maison avec jardin', location: 'Fétilly', price: '380 000 €', surface: '95m²', surfaceTotale: '200m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 3, bains: 1, autres: 1 },
                 features: ['jardin', 'parking']
             },
             { 
                 id: 3, type: 'maison', title: 'Villa vue mer', location: 'La Genette', price: '850 000 €', surface: '200m²', surfaceTotale: '500m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 5, bains: 3, autres: 2 },
                 features: ['piscine', 'jardin', 'garage', 'vue-mer']
             },
@@ -119,51 +119,51 @@ document.addEventListener('DOMContentLoaded', function() {
             // Appartements à La Rochelle
             { 
                 id: 4, type: 'appartement', title: 'Studio moderne', location: 'Les Minimes', price: '180 000 €', surface: '25m²', surfaceTotale: '30m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 1, bains: 1, autres: 0 }
             },
             { 
                 id: 5, type: 'appartement', title: 'Grand T4', location: 'Saint-Nicolas', price: '320 000 €', surface: '80m²', surfaceTotale: '85m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 3, bains: 1, autres: 1 }
             },
 
             // Biens dans l'agglomération
             { 
                 id: 6, type: 'maison', title: 'Maison familiale', location: 'Aytré', price: '350 000 €', surface: '110m²', surfaceTotale: '400m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 4, bains: 2, autres: 1 }
             },
             { 
                 id: 7, type: 'maison', title: 'Maison récente', location: 'Périgny', price: '420 000 €', surface: '130m²', surfaceTotale: '550m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 4, bains: 2, autres: 2 }
             },
             { 
                 id: 8, type: 'appartement', title: 'Duplex avec terrasse', location: 'Lagord', price: '290 000 €', surface: '70m²', surfaceTotale: '90m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 2, bains: 2, autres: 1 }
             },
             { 
                 id: 9, type: 'maison', title: 'Villa avec piscine', location: 'Nieul-sur-Mer', price: '720 000 €', surface: '210m²', surfaceTotale: '800m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 5, bains: 3, autres: 3 }
             },
 
             // Biens atypiques et terrains
             { 
                 id: 10, type: 'atypique', title: 'Loft industriel', location: 'Le Gabut', price: '550 000 €', surface: '150m²', surfaceTotale: '160m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 2, bains: 2, autres: 1 }
             },
             { 
                 id: 11, type: 'terrain', title: 'Terrain à bâtir', location: 'Marsilly', price: '160 000 €', surface: 'N/A', surfaceTotale: '600m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 0, bains: 0, autres: 0 }
             },
             { 
                 id: 12, type: 'locaux', title: 'Bureau en centre-ville', location: 'Centre-ville', price: '250 000 €', surface: '60m²', surfaceTotale: '60m²', 
-                images: ['img/Maison_ex.png'], link: '#',
+                images: ['img/Maison_ex.png'], link: '../propriétés/Propriété de campagne/Propriété_de_campagne_moderne.html',
                 rooms: { chambres: 0, bains: 1, autres: 3 }
             }
         ];
@@ -463,3 +463,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 });
+
+// ===================================================================
+// --- LOGIQUE SPÉCIFIQUE À LA PAGE DE CONTACT (contact.html) ---
+// ===================================================================
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Empêche l'envoi normal du formulaire
+
+        // Ici, vous pourriez ajouter une logique de validation plus complexe
+        // ou un envoi via AJAX si nécessaire.
+
+        // Redirection vers la page de remerciement
+        window.location.href = 'merci.html';
+    });
+}
+
+// ===================================================================
+// --- LOGIQUE SPÉCIFIQUE À LA PAGE D'ESTIMATION (estimations.html) ---
+// ===================================================================
+const estimationForm = document.querySelector('.estimation-form');
+if (estimationForm) {
+    estimationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Récupération des valeurs du formulaire
+        const surface = parseFloat(document.getElementById('surface').value) || 0;
+        const terrain = parseFloat(document.getElementById('terrain').value) || 0;
+        const chambres = parseInt(document.getElementById('chambres').value) || 0;
+        const sdb = parseInt(document.getElementById('sdb').value) || 0;
+        const annee = parseInt(document.getElementById('annee').value) || new Date().getFullYear();
+        const etat = document.querySelector('input[name="etat"]:checked').value;
+        const quartier = document.getElementById('quartier').value;
+        const hasPiscine = document.getElementById('piscine').checked;
+        const hasGarage = document.getElementById('garage').checked;
+        const hasVueMer = document.getElementById('vue-mer').checked;
+
+        // Logique de calcul (très simplifiée)
+        let basePrice = 0;
+        switch (quartier) {
+            case 'centre': basePrice = 4500; break;
+            case 'genette': basePrice = 5000; break;
+            case 'minimes': basePrice = 4200; break;
+            case 'fetilly': basePrice = 3800; break;
+            default: basePrice = 3500;
+        }
+
+        let estimation = surface * basePrice;
+        estimation += terrain * (basePrice / 10);
+        estimation += chambres * 10000;
+        estimation += sdb * 7000;
+
+        if (etat === 'neuf') estimation *= 1.15;
+        if (etat === 'renover') estimation *= 0.8;
+
+        if (hasPiscine) estimation += 30000;
+        if (hasGarage) estimation += 15000;
+        if (hasVueMer) estimation *= 1.2;
+
+        const age = new Date().getFullYear() - annee;
+        estimation *= (1 - age * 0.005); // Décote de 0.5% par an
+
+        const minEstimation = Math.round(estimation * 0.9);
+        const maxEstimation = Math.round(estimation * 1.1);
+
+        // Affichage du résultat
+        const resultContainer = document.querySelector('.estimation-result');
+        const priceElement = resultContainer.querySelector('.estimated-price');
+        priceElement.textContent = `${minEstimation.toLocaleString('fr-FR')} € - ${maxEstimation.toLocaleString('fr-FR')} €`;
+        resultContainer.style.display = 'block';
+    });
+}
